@@ -6,7 +6,7 @@ O processo faz login, baixa a planilha de dados, lê as informações e executa 
 
 ---
 
-### ⚙️ Funcionalidades
+### Funcionalidades
 - Login na aplicação  
 - Download da planilha de funcionários  
 - Armazenamento temporário do arquivo  
@@ -50,9 +50,3 @@ O processo faz login, baixa a planilha de dados, lê as informações e executa 
    ```bash
    python main.py
    ```
-
----
-
-### 🧑‍💻 Autor
-**Rodrigo Araujo Silva**  
-Automação de Processos | RPA | Python | Selenium  
