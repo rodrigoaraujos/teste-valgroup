@@ -1,4 +1,4 @@
-from .elements import DownloadFile, RegisterEmployees, MainForm
+from .elements import DownloadFile, MainForm, RegisterEmployees
 
 
 class MainPage:
@@ -10,9 +10,3 @@ class DashboardPage:
     def __init__(self, driver):
         self.download_button = DownloadFile(driver)
         self.register_employees = RegisterEmployees(driver)
-
-# class EmployeeFormPage:
-#     def __init__(self, driver):
-#         self.form_field = 
-
-# https://desafio-rpa-946177071851.us-central1.run.app/auth/authenticate
