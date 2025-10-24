@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
 
-from page_objects.pages import DashboardPage, LoginPage
+from page_objects.pages import DashboardPage, MainPage
 
 load_dotenv(override=True)
 username = os.getenv("USERNAME")
@@ -13,6 +13,13 @@ password = os.getenv("PASSWORD")
 
 URL = "https://desafio-rpa-946177071851.us-central1.run.app"
 
+def automate_client_registration(driver, download_dir):
+    login_page = MainPage(driver=driver)
+    dashboard_page = DashboardPage(driver=driver)
+    login_page.login_form.login(username, password)
+    dashboard_page.download_button.download_file(download_dir)
+    dashboard_page.register_employees.set_employees(download_dir)
+    login_page.login_form.logout()
 
 def main():
     with tempfile.TemporaryDirectory(delete=False) as download_dir:
@@ -28,13 +35,17 @@ def main():
         )
 
         driver = Chrome(options=options)
+        driver.maximize_window()
 
         driver.get(URL)
 
-        login_page = LoginPage(driver=driver)
-        dashboard_page = DashboardPage(driver=driver)
-        login_page.login_form.login(username, password)
-        dashboard_page.download_button.download_file(download_dir)
+        try:
+            automate_client_registration(driver, download_dir)
+        except:
+            breakpoint()
+        finally:
+            driver.quit()
+                
 
 
 if __name__ == "__main__":
